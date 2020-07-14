@@ -72,12 +72,17 @@ class Game
 
                     puts word_to_display.join()
                     check_for_win
-
+                elsif @missed_letters.include?(guess_this_turn) || @correct_letters.include?(guess_this_turn)
+                    puts "You've already guessed that letter! You've guessed #{@missed_letters} incorrectly."
                 else
                     @guesses -= 1
                     @missed_letters.push(guess_this_turn)
                     puts "That letter isn't in the word!"
                     puts "You have #{@guesses} guesses left!"
+                    puts "You've guessed #{@missed_letters} incorrectly already."
+                    if @guesses == 0
+                        puts "Oh no! You didn't guess the word in time! You lose!"
+                    end
                 end
             end
 
